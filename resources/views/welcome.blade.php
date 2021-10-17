@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.88.1">
-  <title>Carousel Template · Bootstrap v5.1</title>
+  <title>Notificaciones</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
 
@@ -64,9 +64,19 @@
             <li class="nav-item">
               <a class="nav-link active" href="{{route('sugerencias')}}">Sugerencias</a>
             </li>
-
           </ul>
-          <p><a class="btn btn-sm btn-primary" href="/login">Iniciar Sesión</a></p>
+          @guest
+          <p><a class="btn btn-sm btn-primary" href="{{ route('login') }}">Iniciar Sesión</a></p>
+          @else
+          <a class="btn btn-sm btn-primary mx-2" href="{{route('mensaje')}}">Notificaciones</a>
+          <form action="{{ route('logout') }}" method="POST">
+            @method('POST')
+            @csrf
+            <button type="submit" value="Cerrar" class="btn btn-sm btn-danger">Cerrar Sesión</button>
+          </form>
+          </a></p>
+          @endguest
+
         </div>
       </div>
     </nav>
