@@ -10,9 +10,11 @@
                 <form action="{{route('mensaje.store')}}" method="POST">
                     @csrf
                     <select class="form-control mt-2 @error('receptor_id')is-invalid @enderror" name="receptor_id">
-                        <option value="">Seleccione al usuario</option>
+                        <option value="" >Seleccione al usuario</option>
                         @foreach($users as $user)
-                        <option value="{{$user -> id}}">{{$user->name}}</option>
+
+                        <option value="{{$user->id}}" {{old('receptor_id')== $user->id ? "selected" : " "}}>{{$user->name}}</option>
+
                         @endforeach
                     </select>
 
